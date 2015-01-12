@@ -10,16 +10,10 @@ try {
 }
 
 $graphType = $_GET['graphType'];
-//$graphType = 'b9f5219d638b903a7e968486986f4d1a';
 
 if (strlen($graphType) == 32) {
   $res['guidFlag'] = true;
 } else {
-//$sql = 'SELECT * FROM accounts WHERE account_type = :account_type';
-//$stmt = $dbh->prepare($sql);
-//$stmt->execute(array(':account_type' => 'ROOT'));
-//$res = $stmt->fetch(PDO::FETCH_ASSOC);
-//$rootGuid = $res['guid'];
   $rootGuid = '39e32d1d03c8385308274084d3d9c9b6';
   $sql = 'SELECT * FROM accounts WHERE parent_guid = :guid AND account_type = :account_type';
   $stmt = $dbh->prepare($sql);
@@ -132,19 +126,6 @@ function getChildTotal($dbh, $res, $startDate, $endDate) {
     if ($split) {
       $total += $split;
     }
-    //$sql = 'SELECT SUM(value_num) AS total '
-    //     . 'FROM splits AS s '
-    //     . 'INNER JOIN transactions AS t '
-    //     . 'ON s.tx_guid = t.guid '
-    //     . 'WHERE account_guid = :guid '
-    //     . 'AND t.post_date between :start_date and :end_date ';
-
-    //$stmt = $dbh->prepare($sql);
-    //$stmt->execute(array(':guid' => $guid, ':start_date' => $startDate, ':end_date' => $endDate));
-    //$res2 = $stmt->fetch(PDO::FETCH_ASSOC);
-    //if ($res2) {
-    //  $total += $res2['total'];
-    //}
   }
   return $total;
 }
