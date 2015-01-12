@@ -11,8 +11,8 @@ try {
   echo 'Connection failed: ' . $e->getMessage();
 }
 
-$startDate = '20141201';
-$endDate = '20141231';
+$startDate = $_GET['startMonth'];
+$endDate = $_GET['endMonth'];
 
 $accountTypeList = array('INCOME', 'EXPENSE');
 
