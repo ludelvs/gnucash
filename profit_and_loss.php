@@ -11,8 +11,8 @@ try {
   echo 'Connection failed: ' . $e->getMessage();
 }
 
-$startDate = $_GET['startMonth'];
-$endDate = $_GET['endMonth'];
+$startDate = $_GET['startMonth'] . '01';
+$endDate = $_GET['endMonth'] . '31';
 
 $accountTypeList = array('INCOME', 'EXPENSE');
 
@@ -21,14 +21,16 @@ foreach ($accountTypeList as $accountType) {
   $accountList = getAccountByAccountType($dbh, $accountType);
   foreach ($accountList as $account) {
     $amount = calculateSplit($dbh, $account['guid'], $startDate, $endDate);
-    print_r($account['name'] . " " . $amount);
-    print "\n";
+    $values['accountName'][] = $account['name'];
+    $values['amount'][] = $amount;
     $totalAmount += $amount;
   }
-  print $totalAmount;
-  print "\n";
+  $values['accountName'][] = 'Total';
+  $values['amount'][] =  $totalAmount;
   $totalAmountTmp[] = $totalAmount;
 }
 $deduction = $totalAmountTmp[0] - $totalAmountTmp[1];
-print $deduction;
-print "\n";
+$values['accountName'][] = '損益';
+$values['amount'][] =  $deduction;
+
+echo json_encode($values);

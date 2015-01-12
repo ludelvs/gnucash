@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="ja">
+<title>損益計算</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script type="text/javascript" src="./js/highcharts.js"></script>
+<script type="text/javascript" src="profit_and_loss.js"></script>
+<link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body>
+  <div id="loading"><img src="loading.gif"></div>
+  <div style="float: left;">
+    <select id="startMonth" name="startMonth">
+    </select>
+  </div>
+  <div style="float: left;margin-left: 5px; margin-right: 5px;">
+    <span>-</span>
+  </div>
+  <div style="float: left;">
+    <select id="endMonth" name="endMonth">
+    </select>
+  </div>
+  <div style="clear: both;"></div>
+  <div style="margin-top: 10px;">
+    <button type="button" name="display">表示</button>
+  </div>
+  <div id="container" style="width: 2000px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>
