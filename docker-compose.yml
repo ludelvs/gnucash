@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    container_name: gnucash-web
+    build:
+      context: ./etc/docker/web
+    ports:
+      - "19210:80"
+    env_file: .env
+    links:
+      - app
+    volumes:
+      - .:/var/www/html
+  app:
+    container_name: gnucash-app
+    build:
+      context: .
+      dockerfile: ./etc/docker/app/Dockerfile
+    volumes:
+      - .:/var/www/html
+      - ./etc/docker/app/data:/data
+    env_file: .env

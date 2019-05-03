@@ -3,7 +3,7 @@
 require_once('gnucash_functions.php');
 
 
-$dsn = 'sqlite:./gnucash.gnucash';
+$dsn = 'sqlite:/data/gnucash.gnucash';
 try {
   $dbh = new PDO($dsn);
   $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -25,7 +25,12 @@ foreach ($accountTypeList as $accountType) {
     $values['amount'][] = $amount;
     $totalAmount += $amount;
   }
-  $values['accountName'][] = 'Total';
+  if ($accountType == 'INCOME') {
+    $accountTypeName = '収入';
+  } else {
+    $accountTypeName = '支出';
+  }
+  $values['accountName'][] = $accountTypeName . '合計';
   $values['amount'][] =  $totalAmount;
   $totalAmountTmp[] = $totalAmount;
 }

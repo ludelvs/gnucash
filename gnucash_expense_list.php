@@ -3,7 +3,7 @@
 require_once('gnucash_functions.php');
 
 /* ドライバ呼び出しを使用して ODBC データベースに接続する */
-$dsn = 'sqlite:./gnucash.gnucash';
+$dsn = 'sqlite:/data/gnucash.gnucash';
 
 try {
       $dbh = new PDO($dsn);

@@ -2,13 +2,14 @@
 
 require_once('gnucash_functions.php');
 /* ドライバ呼び出しを使用して ODBC データベースに接続する */
-$dsn = 'sqlite:./gnucash.gnucash';
+$dsn = 'sqlite:/data/gnucash.gnucash';
 
 try {
   $dbh = new PDO($dsn);
   $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 } catch (PDOException $e) {
   echo 'Connection failed: ' . $e->getMessage();
+  exit;
 }
 
 $graphType = $_GET['graphType'];
@@ -38,7 +39,7 @@ switch ($graphType) {
     break;
   case 'totalAssets':
     $cashData['setting']['title'] = '総資産';
-    $cashData['setting']['yMax'] = '8000000';
+    $cashData['setting']['yMax'] = '20000000';
     $cashData['setting']['yMin'] = '2000000';
     $cashData['setting']['name'] = 'assets';
     break;
